@@ -1,0 +1,1 @@
+This is a adventure mini-game developed with JavaScript.
