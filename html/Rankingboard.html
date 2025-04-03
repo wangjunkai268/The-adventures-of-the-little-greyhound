@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ranking board</title>
+		<link rel="stylesheet" href="css/Rankingboard.css">
+		<link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div>
+			<div>
+				<table class="tebleaaa" border="1px">
+					<caption class="title">ranking</caption>
+					<tr>
+						<td>Id</td>
+						<td>User</td>
+						<td>Score</td>
+						<td>Time</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+	</body>
+</html>
+
+<script>
+	const xhr = new XMLHttpRequest()
+	var list = [];
+	xhr.open('GET', 'http://47.97.161.71:8087/find', false)
+
+	xhr.addEventListener('loadend', () => {
+		console.log(xhr.response)
+		// 返回字符串 -> JSON
+		const data = JSON.parse(xhr.response)
+		console.log(data)
+		if (data.success) {
+			console.log(data, "data是")
+			list = data.data
+
+
+		} else {
+			alert(data.msg)
+		}
+	})
+	//2.4 发送请求
+	xhr.send();
+	console.log("list是", list)
+	//排序
+	function sortArray(a, b) {
+		if (a.score === b.score) {
+			return b.time - a.time
+		} else return b.score - a.score
+	}
+	list.sort(sortArray)
+	console.log("排序后", list)
+	// 创建dom结构
+	var father = document.querySelector(".tebleaaa");
+	for (let t = 0; t < list.length; t++) {
+		let recordTable = document.createElement("tr")
+		recordTable.innerHTML = `
+					<tr>
+						<td>${list[t].id}</td>
+						<td>${list[t].username}</td>
+						<td>${list[t].score}</td>
+						<td>${list[t].time}</td>
+					</tr>
+				`
+		father.appendChild(recordTable)
+	}
+</script>

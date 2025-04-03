@@ -1,0 +1,57 @@
+body {
+	background-image: url('../image/background.png');
+	background-size: 200%;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+}
+
+.title {
+	padding-top: 100px;
+}
+
+.left-box {
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+	font-family: 'Creepster', cursive;
+	/* 	margin-top: 129px;
+	margin-left: 166px; */
+	font-size: 100px;
+}
+
+.wenzi {
+	float: left;
+	padding-top: 30px;
+	ar-left: 20px;
+}
+
+.photo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.left-box img {
+	width: 100px;
+	height: 100px;
+	display: block;
+	float: left;
+}
+
+.title {
+	display: block;
+	font-family: 'Creepster', cursive;
+	font-size: 100px;
+	text-align: center;
+	color: #990000;
+	margin: auto;
+}
+
+.title .t1 {
+	margin: auto;
+	width: 200px;
+
+}

@@ -1,0 +1,19 @@
+body
+{
+	background-image: url('../image/background.png');
+	background-size: 200%;
+	font-family: 'Creepster', cursive;
+}
+.title
+{
+	font-size: 100px;
+	color: black;
+}
+.tebleaaa
+{
+	color: #990000;
+	margin: 0 auto;
+	border: transparent;
+	font-size: 30px;
+	 background: transparent;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/menu.css">
+		<link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+		<title></title>
+	</head>
+	<body>
+
+
+		<br>
+		<h1 class="title">
+			<div class="t1">" The</div>
+			<div class="t2">Adventure of</div>
+			<div class="t3">Charcoal the Puppy "</div>
+		</h1>
+		<div class="left-box">
+			<div class="button game-start">
+				<div class="photo">
+					<img src="image/game_start.png" alt="" class="play">
+				</div>
+
+				<div class="wenzi">start</div>
+			</div>
+			<div class="button ranking">
+				<div class="photo">
+					<img src="image/ranking.png" alt="" class="rank-list">
+				</div>
+
+				<div class="wenzi">ranking</div>
+			</div>
+			<div class="button game-quit">
+				<div class="photo">
+					<img src="image/quit.png" alt="" class="quit">
+				</div>
+
+				<div class="wenzi">quit</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		document.querySelector('.game-start').addEventListener('click', () => {
+			window.location.href = "main.html"
+		})
+		document.querySelector('.ranking').addEventListener('click', () => {
+			window.location.href = "Rankingboard.html"
+		})
+		document.querySelector('.game-quit').addEventListener('click', () => {
+			window.location.href = "index.html"
+		})
+	</script>
+</html>

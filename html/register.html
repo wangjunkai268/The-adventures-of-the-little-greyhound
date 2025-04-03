@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Sign in</title>
+		<link rel="stylesheet" href="css/register.css" />
+			<link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div id="login-box">
+			<h1 class="register-logo">Register</h1>
+			<form>
+				<div class="input-box">
+					<i class="iconfont">&#xe609;</i>
+
+					<input class="input username" type="text" name="username" placeholder="请输入用户名" required /><br><br>
+					<i class="iconfont">&#xe605;</i>
+					<input class="input password" type="password" name="password" placeholder="请输入密码" required /><br><br>
+						<i class="iconfont">&#xe605;</i>
+					<input class="input password2" type="password" name="password2" placeholder="请确认密码" required /><br><br>
+				</div>
+		
+
+			</form>
+			<input id="submit" type="submit" value="注册" style="background-color: gray ;border:gray solid;">
+		</div>
+		<script>
+			document.getElementById('submit').addEventListener('click', () => {
+				console.log('点击了')
+				//获取参数
+				const username = document.querySelector('.username').value
+				const password = document.querySelector('.password').value
+				const password2 = document.querySelector('.password2').value
+
+				if (password === password2) {
+					//1 创建查询参数对象
+					const qObj = {
+						username,
+						password
+					}
+					//2 查询参数对象 -> 查询参数字符串
+					const paramsObj = new URLSearchParams(qObj)
+					const queryString = paramsObj.toString()
+					console.log(queryString)
+
+					//3. 使用 XTMHttpReque 对象发送请求
+					const xhr = new XMLHttpRequest()
+					xhr.open('GET', `http://47.97.161.71:8087/register?${queryString}`)
+					xhr.addEventListener('loadend', () => {
+						console.log(xhr.response)
+						//返回类型为 json 类型 -> JS数据
+						const data = JSON.parse(xhr.response)
+						console.log(data)
+						if (data.success) {
+							window.location.href = "index.html"
+						} else {
+							alert(data.msg)
+						}
+					})
+
+					// 设置请求头-告诉服务器内容类型（JSON字符串）
+					//xhr.setRequestHeader('Content-Type', 'application/json')
+					// 准备提交的数据（js类型）
+					// const userObj = {
+					// 	username,
+					// 	password
+					// }
+					// 数据体 -> JSON字符串
+					//const userStr = JSON.stringify(userObj)
+					// 设置请求体，发起请求
+					xhr.send()
+				} else {
+					alert("密码不一致")
+				}
+			})
+		</script>
+	</body>
+</html>

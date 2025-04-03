@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Login</title>
+		<link rel="stylesheet" href="css/Login.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div id="login-box">
+			<h1 class="login-logo">Login</h1>
+			<form>
+				<div class="input-box">
+
+					<span th:text="${data}" class="input-box outter-font">账号</span>
+					<input class="username" type="text" name="username" placeholder="请输入用户名" required /><br><br>
+				</div>
+				<div class="input-box">
+					<span th:text="${data}" class="input-box outter-font">密码</span>
+					<input class="password" type="password" name="password" placeholder="请输入密码" required /><br><br>
+				</div>
+
+			</form>
+			<input id="submit" type="submit" value="登录" class="confirm-button" style="margin-left: 116px;">
+
+			<form method="get" action="./register.html">
+				<input type="submit" value="注册" class="confirm-button">
+			</form>
+			<!-- <form method="get" action="/toMessage">
+				<input type="submit" value="查询登陆用户的信息">
+			</form> -->
+		</div>
+		<!-- 引入 axios 的接口 -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script>
+			//1.绑定事件
+			document.getElementById('submit').addEventListener('click', () => {
+				console.log('点击了')
+				//2.获取用户名&密码
+				let username = document.querySelector('.username').value
+				let password = document.querySelector('.password').value
+				console.log(username, password)
+
+				localStorage.setItem('username', username)
+
+				//3.1 创建查询参数对象
+				const qObj = {
+					username,
+					password
+				}
+				//3.2 查询参数对象 -> 查询参数字符串
+				const paramsObj = new URLSearchParams(qObj)
+				const queryString = paramsObj.toString()
+				console.log(queryString)
+
+				//4. 使用 XTMHttpReque 对象发送请求
+				const xhr = new XMLHttpRequest()
+				xhr.open('GET', `http://47.97.161.71:8087/login?${queryString}`)
+				xhr.addEventListener('loadend', () => {
+					//console.log(xhr.response)
+					//返回类型为 json 类型 -> JS数据
+					const data = JSON.parse(xhr.response)
+					console.log(data)
+					if (data.success) {
+						localStorage.setItem('id', data.data.id)
+						window.location.href = "menu.html"
+					} else {
+						alert("用户名或密码错误")
+					}
+				})
+				xhr.send()
+			})
+		</script>
+	</body>
+</html>
